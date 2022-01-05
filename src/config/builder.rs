@@ -310,6 +310,7 @@ impl ConfigBuilder {
 #[cfg(all(test, feature = "datadog-pipelines", feature = "api"))]
 mod tests {
     use crate::config::ConfigBuilder;
+    use pretty_assertions::assert_eq;
 
     #[test]
     /// We are relying on `serde_json` to serialize keys in the ordered provided. If this test
@@ -324,14 +325,14 @@ mod tests {
         // hash is reproducible across versions.
         let expected_keys = [
             "api",
+            "enrichment_tables",
             "global",
             "healthchecks",
-            "enrichment_tables",
-            "sources",
-            "sinks",
-            "transforms",
-            "tests",
             "provider",
+            "sinks",
+            "sources",
+            "tests",
+            "transforms",
         ];
 
         let builder = ConfigBuilder::default();
@@ -352,7 +353,7 @@ mod tests {
             // Should serialize to a map.
             Value::Object(map) => {
                 // Check ordering.
-                assert!(map.keys().eq(expected_keys));
+                assert_eq!(map.keys().collect::<Vec<_>>(), expected_keys);
             }
             _ => panic!("should serialize to object"),
         }
@@ -364,7 +365,7 @@ mod tests {
     /// should ideally be able to fix so that the original hash passes!
     fn version_hash_match() {
         assert_eq!(
-            "14def8ff43fe0255b3234a7c3d7488379a119b7dbcf311c77ad308a83173d92c",
+            "52e16e90f124684813eda56897c23f1fdf5b07435fc3f2ca87f53ff3e3788039",
             ConfigBuilder::default().sha256_hash()
         );
     }

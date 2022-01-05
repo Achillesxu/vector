@@ -383,6 +383,7 @@ fn write_config(filepath: &Path, body: &str) -> Result<usize, crate::Error> {
 mod tests {
     #[cfg(all(feature = "transforms-json_parser", feature = "sinks-console"))]
     use indoc::indoc;
+    use pretty_assertions::assert_eq;
 
     use super::*;
 
@@ -445,7 +446,13 @@ mod tests {
         assert_eq!(cfg.unwrap(), filecontents)
     }
 
-    #[cfg(all(feature = "transforms-json_parser", feature = "sinks-console"))]
+    #[cfg(all(
+        feature = "sources-stdin",
+        feature = "transforms-add_fields",
+        feature = "transforms-json_parser",
+        feature = "transforms-remove_fields",
+        feature = "sinks-console"
+    ))]
     #[test]
     fn generate_basic() {
         assert_eq!(
