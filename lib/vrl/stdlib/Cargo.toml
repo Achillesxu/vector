@@ -98,6 +98,7 @@ default = [
     "is_regex",
     "is_string",
     "is_timestamp",
+    "isplit",
     "join",
     "length",
     "log",
@@ -221,6 +222,7 @@ is_object = []
 is_regex = []
 is_string = []
 is_timestamp = []
+isplit = []
 join = []
 length = []
 log = ["tracing"]

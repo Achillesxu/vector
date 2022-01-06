@@ -87,7 +87,7 @@ help:
 # These are some predefined macros, please use them!
 ifeq ($(ENVIRONMENT), true)
 define MAYBE_ENVIRONMENT_EXEC
-${ENVIRONMENT_EXEC}
+
 endef
 else
 define MAYBE_ENVIRONMENT_EXEC
