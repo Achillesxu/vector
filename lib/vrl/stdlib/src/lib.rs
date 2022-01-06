@@ -94,6 +94,8 @@ mod is_regex;
 mod is_string;
 #[cfg(feature = "is_timestamp")]
 mod is_timestamp;
+#[cfg(feature = "isplit")]
+mod isplit;
 #[cfg(feature = "join")]
 mod join;
 #[cfg(feature = "length")]
@@ -343,6 +345,8 @@ pub use is_regex::IsRegex;
 pub use is_string::IsString;
 #[cfg(feature = "is_timestamp")]
 pub use is_timestamp::IsTimestamp;
+#[cfg(feature = "isplit")]
+pub use isplit::Isplit;
 #[cfg(feature = "join")]
 pub use join::Join;
 #[cfg(feature = "length")]
@@ -591,6 +595,8 @@ pub fn all() -> Vec<Box<dyn vrl::Function>> {
         Box::new(IsString),
         #[cfg(feature = "is_timestamp")]
         Box::new(IsTimestamp),
+        #[cfg(feature = "isplit")]
+        Box::new(Isplit),
         #[cfg(feature = "join")]
         Box::new(Join),
         #[cfg(feature = "length")]
